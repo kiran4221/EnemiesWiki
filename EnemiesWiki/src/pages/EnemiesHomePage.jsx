@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,6 +11,7 @@ import enemiesData from '../data/enemies.json';
 function EnemiesHomePage() {
 
     const [enemies] = useState(enemiesData.enemies);
+    const navigate = useNavigate();
 
     const truncateText = (text) => {
         const maxLength = 100;
@@ -17,6 +19,10 @@ function EnemiesHomePage() {
           return text.slice(0, maxLength) + '...';
         }
         return text;
+      };
+
+      const handleDetails = (enemy) => {
+        navigate('/enemiesCard', {state: {enemy}});
       };
 
     // useEffect(
@@ -79,7 +85,7 @@ function EnemiesHomePage() {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">See Details</Button>
+                        <Button size="small" variant='contained' onClick={() => handleDetails(enemy)}>See Details</Button>
                     </CardActions>
                 </Card>
                 ))}

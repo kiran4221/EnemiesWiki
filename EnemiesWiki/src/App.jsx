@@ -1,12 +1,14 @@
+import { Routes, Route } from 'react-router-dom';
 import EnemiesHomePage from './pages/EnemiesHomePage';
+import EnemiesCard from './components/EnemiesCard';
 
 function App() {
-    return (
-        <>
-            {/*<EnemiesCard></EnemiesCard>*/}
-            <EnemiesHomePage></EnemiesHomePage>
-        </>
-    );
+  return (
+      <Routes>
+        <Route path="/" element={<EnemiesHomePage />} />
+        <Route path="/enemiesCard" element={<EnemiesCard />} />
+      </Routes>
+  );
 }
 
-export default App
+export default App;
