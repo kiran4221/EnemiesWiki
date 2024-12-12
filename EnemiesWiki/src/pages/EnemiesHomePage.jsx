@@ -63,10 +63,11 @@ function EnemiesHomePage() {
                 gap: '20px',
                 marginTop: '20px',
                 padding: '10px',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                backgroundColor: '#eceff1'
             }}>
                 {enemies.map((enemy) => (
-                    <Card sx={{ maxWidth: 345 } }key={enemy.id}>
+                    <Card sx={{ maxWidth: 345 } }key={enemy.id} >
                         <CardMedia
                         sx={{ height: 140 }}
                         image={enemy.image}

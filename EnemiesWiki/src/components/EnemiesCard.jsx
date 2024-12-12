@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
+import { Box } from '@mui/material';
 
 function EnemiesCard() {
     const { state } = useLocation();
@@ -15,6 +16,16 @@ function EnemiesCard() {
 
     return (
         <div>
+            <Box
+            sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                minHeight: '100vh',
+                backgroundColor: '#f5f5f5',
+                padding: '20px',
+            }}
+            >
             <Card sx={{ maxWidth: 345 }} key={enemy.id}>
                 <CardActionArea>
                     <CardMedia
@@ -22,6 +33,11 @@ function EnemiesCard() {
                         height="140"
                         image={enemy.image}
                         alt={enemy.name}
+                        sx={{height: '300px',
+                            objectFit: 'cover',
+                            borderTopLeftRadius: "10px",
+                            borderTopRightRadius: "10px"
+                        }}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
@@ -36,6 +52,7 @@ function EnemiesCard() {
                     </CardContent>
                 </CardActionArea>
             </Card>
+            </Box>
         </div>
     );
 }
