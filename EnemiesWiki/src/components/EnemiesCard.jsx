@@ -11,18 +11,12 @@ function EnemiesCard() {
     const enemy = state?.enemy;
 
     if (!enemy) {
-        return (
-            <Typography
-                variant="h6"
-                sx={{ textAlign: 'center', marginTop: '20px' }}
-            >
-                No enemy data available.
-            </Typography>
-        );
+        return <div>No enemy data available.</div>;
     }
 
     return (
-        <Box
+        <div>
+            <Box
             sx={{
                 display: 'flex',
                 justifyContent: 'center',
@@ -31,18 +25,18 @@ function EnemiesCard() {
                 backgroundColor: '#f5f5f5',
                 padding: '20px',
             }}
-        >
+            >
             <Card sx={{ maxWidth: 345 }} key={enemy.id}>
                 <CardActionArea>
                     <CardMedia
                         component="img"
+                        height="140"
                         image={enemy.image}
                         alt={enemy.name}
-                        sx={{
-                            height: '300px',
+                        sx={{height: '300px',
                             objectFit: 'cover',
-                            borderTopLeftRadius: '10px',
-                            borderTopRightRadius: '10px',
+                            borderTopLeftRadius: "10px",
+                            borderTopRightRadius: "10px"
                         }}
                     />
                     <CardContent>
@@ -52,16 +46,14 @@ function EnemiesCard() {
                         <Typography variant="h6" component="div">
                             {enemy.variantOf}
                         </Typography>
-                        <Typography
-                            variant="body2"
-                            sx={{ color: 'text.secondary' }}
-                        >
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                             {enemy.description}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
             </Card>
-        </Box>
+            </Box>
+        </div>
     );
 }
 
