@@ -11,18 +11,26 @@ import enemiesData from '../data/enemies.json';
 function EnemiesHomePage() {
 
     const [enemies] = useState(enemiesData.enemies);
+    const [searchLetter, setSearchLetter] = useState('');
     const navigate = useNavigate();
 
     const truncateText = (text) => {
         const maxLength = 100;
         if (text.length > maxLength) {
-          return text.slice(0, maxLength) + '...';
+            return text.slice(0, maxLength) + '...';
         }
         return text;
       };
 
-      const handleDetails = (enemy) => {
-        navigate('/enemiesCard', {state: {enemy}});
+        const handleDetails = (enemy) => {
+            navigate('/enemiesCard', {state: {enemy}});
+      };
+
+        const handleSearch = () => {
+            const filteredEnemies = enemies.filter((enemy) => 
+                enemy.name.toLowerCase().startsWith(searchLetter.toLowerCase())
+            );            
+            navigate('/enemySearchResults', {state: filteredEnemies})
       };
 
     // useEffect(
@@ -54,10 +62,12 @@ function EnemiesHomePage() {
                     and Super Mario 3D World, these adversaries have played a crucial 
                     role in shaping the gameplay experience.</Typography>
             </Box>
+
             <Box sx={{display: 'flex', flexDirection: 'row' , marginLeft: '150px', marginRight: '150px'}}>
-                <TextField sx= {{ flexGrow: 1}} label='Search Enemies by Alphabet here'></TextField>
-                <Button variant='contained' color= 'primary' sx={{ marginLeft: '10px' }}>Search</Button>
+                <TextField sx= {{ flexGrow: 1}} label='Search Enemies by Alphabet here' value={searchLetter || ''} onChange={(e) =>         setSearchLetter(e.target.value)}></TextField>
+                <Button variant='contained' color= 'primary' sx={{ marginLeft: '10px' }} onClick={handleSearch}>Search</Button>
             </Box>
+
             <Box sx={{display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
                 gap: '20px',

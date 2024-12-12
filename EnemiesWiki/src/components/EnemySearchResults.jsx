@@ -3,20 +3,19 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
 import { Box } from '@mui/material';
 
-function EnemiesCard() {
+function EnemySearchResults() {
     const { state } = useLocation();
-    const enemy = state?.enemy;
+    const filteredEnemies = state;
 
-    if (!enemy) {
+    if (!filteredEnemies || filteredEnemies.length === 0) {
         return (
             <Typography
                 variant="h6"
                 sx={{ textAlign: 'center', marginTop: '20px' }}
             >
-                No enemy data available.
+                No enemies found.
             </Typography>
         );
     }
@@ -32,18 +31,12 @@ function EnemiesCard() {
                 padding: '20px',
             }}
         >
-            <Card sx={{ maxWidth: 345 }} key={enemy.id}>
-                <CardActionArea>
+            {filteredEnemies.map((enemy) => (
+                <Card sx={{ maxWidth: 345 }} key={enemy.id}>
                     <CardMedia
-                        component="img"
+                        sx={{ height: 300 }}
                         image={enemy.image}
-                        alt={enemy.name}
-                        sx={{
-                            height: '300px',
-                            objectFit: 'cover',
-                            borderTopLeftRadius: '10px',
-                            borderTopRightRadius: '10px',
-                        }}
+                        title={enemy.name}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
@@ -59,10 +52,10 @@ function EnemiesCard() {
                             {enemy.description}
                         </Typography>
                     </CardContent>
-                </CardActionArea>
-            </Card>
+                </Card>
+            ))}
         </Box>
     );
 }
 
-export default EnemiesCard;
+export default EnemySearchResults;
